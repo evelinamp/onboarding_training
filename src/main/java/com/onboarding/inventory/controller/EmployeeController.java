@@ -3,10 +3,8 @@ import com.onboarding.inventory.model.Employee;
 import com.onboarding.inventory.service.EmployeeService;
 
 import com.onboarding.inventory.service.dto.EmployeeDTO;
-import com.onboarding.inventory.service.mapper.EmployeeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,21 +28,19 @@ public class EmployeeController {
 
     @Autowired
     private final EmployeeService employeeService;
-    private final EmployeeMapper employeeMapper;
-
 
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<EmployeeDTO>> findEmployees() {
 
 
-        return ResponseEntity.ok(employeeMapper.toEmployeeDTOs(employeeService.findAll()));
+        return ResponseEntity.ok(employeeService.findAll());
     }
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EmployeeDTO> create(@RequestBody EmployeeDTO employeeDTO) {
-        employeeService.save(employeeMapper.toEmployee(employeeDTO));
+        employeeService.save(employeeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeDTO);
     }
 
@@ -57,14 +53,16 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeeDTO> update(@PathVariable Integer id, @Valid @RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity update(@PathVariable Integer id, @Valid @RequestBody EmployeeDTO employeeDTO) {
 
-        Employee employee = employeeMapper.toEmployee(employeeDTO);
-        employee.setId(id);
+        Employee employee = employeeService.findById(id).orElse(null);
+        if (employee != null) {
+            employeeDTO.setId(id);
+            employeeService.save(employeeDTO);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(employeeDTO);
+        }
 
-        employeeService.save(employee);
-
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(employeeDTO);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(employeeDTO);
     }
 
     @DeleteMapping("/{id}")
