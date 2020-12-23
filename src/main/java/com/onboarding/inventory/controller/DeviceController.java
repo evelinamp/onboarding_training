@@ -3,7 +3,7 @@ package com.onboarding.inventory.controller;
 import com.onboarding.inventory.model.Device;
 import com.onboarding.inventory.service.DeviceService;
 import com.onboarding.inventory.service.dto.DeviceDTO;
-import com.onboarding.inventory.service.mapper.DeviceMapper;
+
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,34 +24,36 @@ public class DeviceController {
 
     @Autowired
     private final DeviceService deviceService;
-    private final DeviceMapper deviceMapper;
+
 
     @GetMapping
     public ResponseEntity<List<DeviceDTO>> findDevices() {
-        return ResponseEntity.ok(deviceMapper.toDeviceDTOs(deviceService.findAll()));
+        return ResponseEntity.ok(deviceService.findAll());
     }
 
     @PostMapping
     public ResponseEntity<DeviceDTO> create(@RequestBody DeviceDTO deviceDTO) {
-        deviceService.save(deviceMapper.toDevice(deviceDTO));
+        deviceService.save(deviceDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(deviceDTO);
     }
 
     @GetMapping("/{serialNumber}")
-    public ResponseEntity<DeviceDTO> findById(@PathVariable String serialNumber) {
+    public ResponseEntity<Device> findById(@PathVariable String serialNumber) {
         Optional<Device> device = deviceService.findById(serialNumber);
 
-        return ResponseEntity.ok(deviceMapper.toDeviceDTO(device.get()));
+        return ResponseEntity.ok(device.orElse(null));
     }
 
     @PutMapping("/{serialNumber}")
-    public ResponseEntity<DeviceDTO> update(@PathVariable String serialNumber, @RequestBody DeviceDTO deviceDTO) {
-        Device device = deviceMapper.toDevice(deviceDTO);
-        device.setSerialNumber(serialNumber);
+    public ResponseEntity update(@PathVariable String serialNumber, @RequestBody DeviceDTO deviceDTO) {
+        Device device = deviceService.findById(serialNumber).orElse(null);
+        if (device != null) {
+            deviceDTO.setSerialNumber(serialNumber);
+            deviceService.save(deviceDTO);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(deviceDTO);
+        }
 
-        deviceService.save(device);
-
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(deviceDTO);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(deviceDTO);
     }
 
     @DeleteMapping("/{serialNumber}")

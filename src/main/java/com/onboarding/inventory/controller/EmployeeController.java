@@ -24,8 +24,6 @@ import java.util.Optional;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-
-
     @Autowired
     private final EmployeeService employeeService;
 
@@ -33,12 +31,11 @@ public class EmployeeController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<EmployeeDTO>> findEmployees() {
 
-
         return ResponseEntity.ok(employeeService.findAll());
     }
 
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<EmployeeDTO> create(@RequestBody EmployeeDTO employeeDTO) {
         employeeService.save(employeeDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeDTO);

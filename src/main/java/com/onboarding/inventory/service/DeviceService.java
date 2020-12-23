@@ -2,6 +2,8 @@ package com.onboarding.inventory.service;
 
 import com.onboarding.inventory.model.Device;
 import com.onboarding.inventory.repository.DeviceRepository;
+import com.onboarding.inventory.service.dto.DeviceDTO;
+import com.onboarding.inventory.service.mapper.DeviceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,11 @@ public class DeviceService implements IDeviceService {
 
     @Autowired
     private final DeviceRepository deviceRepository;
+    private final DeviceMapper deviceMapper;
 
     @Override
-    public List<Device> findAll() {
-        return deviceRepository.findAll();
+    public List<DeviceDTO> findAll() {
+        return deviceMapper.toDeviceDTOs(deviceRepository.findAll());
     }
 
     @Override
@@ -27,8 +30,8 @@ public class DeviceService implements IDeviceService {
     }
 
     @Override
-    public Device save(Device device) {
-        return deviceRepository.save(device);
+    public Device save(DeviceDTO deviceDTO) {
+        return deviceRepository.save(deviceMapper.toDevice(deviceDTO));
 
     }
     @Override

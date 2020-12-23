@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface IEmployeeService {
 
-    public List<EmployeeDTO> findAll();
-    public Optional<Employee> findById(Integer id);
-    public Employee save(EmployeeDTO employeeDTO);
-    public void deleteById(Integer id);
+     List<EmployeeDTO> findAll();
+     Optional<Employee> findById(Integer id);
+     Employee save(EmployeeDTO employeeDTO);
+     void deleteById(Integer id);
 
 }
