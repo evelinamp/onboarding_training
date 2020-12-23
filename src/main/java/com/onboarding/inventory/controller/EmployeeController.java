@@ -34,7 +34,6 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.findAll());
     }
 
-
     @PostMapping
     public ResponseEntity<EmployeeDTO> create(@RequestBody EmployeeDTO employeeDTO) {
         employeeService.save(employeeDTO);
