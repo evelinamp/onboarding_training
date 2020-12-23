@@ -1,6 +1,4 @@
 package com.onboarding.inventory.model;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +20,7 @@ public class Admin {
 
     @NotNull
     @Size(max = 255)
+    @Column(unique = true)
     private String email;
 
     @NotNull
@@ -33,7 +32,6 @@ public class Admin {
     private String password;
 
     @OneToOne
-    @JsonManagedReference
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 

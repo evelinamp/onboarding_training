@@ -4,6 +4,8 @@ import com.onboarding.inventory.model.Employee;
 import com.onboarding.inventory.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +39,6 @@ public class EmployeeService implements IEmployeeService{
         employeeRepository.deleteById(id);
 
     }
+
 
 }

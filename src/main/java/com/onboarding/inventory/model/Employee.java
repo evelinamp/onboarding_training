@@ -1,9 +1,7 @@
 package com.onboarding.inventory.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,13 +32,15 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    @JsonBackReference
     private Company company;
 
-    @OneToMany(mappedBy = "employee")
-    @JsonBackReference
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST},mappedBy = "employee")
     private Set<Device> devices;
 
+    @PreRemove
+    private void preRemove() {
+        devices.forEach( device -> device.setEmployee(null));
+    }
 
 
 }

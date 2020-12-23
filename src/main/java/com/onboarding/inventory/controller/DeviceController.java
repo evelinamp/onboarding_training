@@ -37,14 +37,14 @@ public class DeviceController {
         return ResponseEntity.status(HttpStatus.CREATED).body(deviceDTO);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{serialNumber}")
     public ResponseEntity<DeviceDTO> findById(@PathVariable String serialNumber) {
         Optional<Device> device = deviceService.findById(serialNumber);
 
         return ResponseEntity.ok(deviceMapper.toDeviceDTO(device.get()));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{serialNumber}")
     public ResponseEntity<DeviceDTO> update(@PathVariable String serialNumber, @RequestBody DeviceDTO deviceDTO) {
         Device device = deviceMapper.toDevice(deviceDTO);
         device.setSerialNumber(serialNumber);
@@ -54,7 +54,7 @@ public class DeviceController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(deviceDTO);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{serialNumber}")
     public ResponseEntity delete(@PathVariable String serialNumber) {
 
         deviceService.deleteById(serialNumber);

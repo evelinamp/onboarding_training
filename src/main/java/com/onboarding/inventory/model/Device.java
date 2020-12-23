@@ -1,7 +1,6 @@
 package com.onboarding.inventory.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,11 +29,10 @@ public class Device {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    @JsonBackReference
     private Company company;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn( name = "employee_id")
     @JsonBackReference
     private Employee employee;
 
