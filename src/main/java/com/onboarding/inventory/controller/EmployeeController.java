@@ -40,7 +40,6 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeDTO);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Employee> findById(@PathVariable Integer id) {
         Optional<Employee> employee = employeeService.findById(id);

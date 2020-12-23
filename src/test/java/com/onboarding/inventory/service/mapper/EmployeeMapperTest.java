@@ -5,10 +5,11 @@ import com.onboarding.inventory.model.Employee;
 import com.onboarding.inventory.service.dto.EmployeeDTO;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class EmployeeMapperTest {
@@ -29,8 +30,8 @@ class EmployeeMapperTest {
         assertEquals(employeeDTO.getName(), employee.getName());
         assertEquals(employeeDTO.getId(), employee.getId());
         assertEquals(employeeDTO.getEmail(), employee.getEmail());
-        assertNull(employeeDTO.getCompany().getAddress());
-        assertEquals(employeeDTO.getDevices().size(), 0);
+        assertNotNull(employeeDTO.getCompany());
+        assertNotNull(employeeDTO.getDevices());
     }
 
     @Test
@@ -40,10 +41,44 @@ class EmployeeMapperTest {
 
     @Test
     void toEmployeeDTO_nullDevices() {
+
         Employee employee = new Employee();
         EmployeeDTO employeeDTO = employeeMapper.toEmployeeDTO(employee);
         assertNull(employeeDTO.getDevices());
     }
 
+    @Test
+     void toEmployeeDTOs() {
 
+        Employee employee = new Employee();
+        employee.setId(1);
+
+        List<Employee> employees = new ArrayList<Employee>() {{ add(employee); }};
+
+        assertEquals(employeeMapper.toEmployeeDTOs(employees).size(), employees.size());
+        assertEquals(employeeMapper.toEmployeeDTOs(employees).get(0).getId(), employee.getId());
+
+    }
+
+    @Test
+    void toEmployeeDTOs_nullEmployees() {assertNull(employeeMapper.toEmployeeDTOs(null));}
+
+
+    @Test
+    void toEmployee() {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setId(1);
+        employeeDTO.setEmail("email@email.com");
+        employeeDTO.setName("name");
+        employeeDTO.setCompany(new Company());
+        employeeDTO.setDevices(new HashSet<>());
+
+        Employee employee = employeeMapper.toEmployee(employeeDTO);
+
+        assertEquals(employee.getName(), employeeDTO.getName());
+        assertEquals(employee.getId(), employeeDTO.getId());
+        assertEquals(employee.getEmail(), employeeDTO.getEmail());
+        assertNotNull(employee.getCompany());
+        assertNotNull(employee.getDevices());
+    }
 }

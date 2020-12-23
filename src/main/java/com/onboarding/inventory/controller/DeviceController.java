@@ -25,7 +25,6 @@ public class DeviceController {
     @Autowired
     private final DeviceService deviceService;
 
-
     @GetMapping
     public ResponseEntity<List<DeviceDTO>> findDevices() {
         return ResponseEntity.ok(deviceService.findAll());
