@@ -1,0 +1,13 @@
+<Jumbo>
+  <h3>Welcome to Device Inventory!</h3>
+</Jumbo>
+
+ <h3>List of Employees</h3>
+<div class="employees">
+
+  <ul class="results">
+        {{#each @model as |employee|}}
+      <li><Employee @employee={{employee}} /></li>
+    {{/each}}
+  </ul>
+</div>

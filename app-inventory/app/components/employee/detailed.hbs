@@ -1,0 +1,32 @@
+{{!-- <Jumbo>
+  <h2>{{@rental.title}}</h2>
+  <p>Nice find! This looks like a nice place to stay near {{@rental.city}}.</p>
+  <ShareButton
+    @text="Check out {{@rental.title}} on Super Rentals!"
+    @hashtags="vacation,travel,authentic,blessed,superrentals"
+    @via="emberjs"
+  >
+    Share on Twitter
+  </ShareButton>
+</Jumbo> --}}
+
+<article class="employee detailed">
+
+  <div class="details">
+
+    <div class="detail name">
+      <span>Name:</span> {{@employee.name}}
+    </div>
+    <div class="detail email">
+      <span>Email:</span> {{@employee.email}}
+    </div>
+     <div class="detail devices">
+
+      <span>Devices:</span> {{@employee.devices.name}}
+    </div>
+
+      {{!-- <span>Devices1:</span> {{@employee.devices}} --}}
+
+
+  </div>
+</article>

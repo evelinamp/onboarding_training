@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": "grand-old-mansion",
+      "attributes": {
+        "title": "Grand Old Mansion",
+        "owner": "Veruca Salt",
+        "city": "San Francisco",
+        "bedrooms": 15
+      }
+    },
+    {
+      "id": "urban-living",
+      "attributes": {
+        "title": "Urban Living",
+        "owner": "Mike Teavee",
+        "city": "Seattle",
+        "bedrooms": 1
+      }
+    },
+    {
+      "id": "downtown-charm",
+      "attributes": {
+        "title": "Downtown Charm",
+        "owner": "Violet Beauregarde",
+        "city": "Portland",
+        "bedrooms": 3
+      }
+    }
+  ]
+}

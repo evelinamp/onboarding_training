@@ -1,0 +1,58 @@
+
+  [
+  {
+      "id":1,
+      "email": "evelina@gmail.com",
+      "name": "Evelina Mpazouki",
+      "company": {
+          "id": 1,
+          "name": "company",
+          "address": "addr"
+      },
+      "devices":
+          {
+              "serialNumber": "1234567890",
+              "name": "lap123g",
+              "type": "laptop"
+          }
+
+  },
+  {
+    "id":2,
+    "email": "name@gmail.com",
+    "name": "name",
+    "company": {
+        "id": 1,
+        "name": "company",
+        "address": "addr"
+    },
+    "devices":
+        {
+            "serialNumber": "123456",
+            "name": "lap123go",
+            "type": "laptop"
+        }
+
+
+},
+  {
+    "id":3,
+    "email": "example@gmail.com",
+    "name": "Name",
+    "company": {
+        "id": 2,
+        "name": "other company",
+        "address": "remote"
+    },
+    "devices":
+
+        {
+            "serialNumber": "1234567",
+            "name": "mac",
+            "type": "laptop"
+        }
+
+}
+
+]
+

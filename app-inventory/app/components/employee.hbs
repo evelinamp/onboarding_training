@@ -1,0 +1,31 @@
+
+<article class="employee">
+  <div class="details">
+    {{!-- <h3>
+      <LinkTo @route="rental" @model={{@employee}}>
+        Hello
+      </LinkTo>
+    </h3> --}}
+
+    <div class="detail owner">
+
+
+
+      <span>Name:</span> {{@employee.name}}
+    </div>
+    <div class="detail location">
+      <span>Email:</span> {{@employee.email}}
+    </div>
+    <div class="detail location">
+      <span>Company:</span> {{@employee.company.name}}
+    </div>
+    <div class="detail location">
+      <span>Address:</span> {{@employee.company.address}}
+    </div>
+     <LinkTo @route="employee" @model={{@employee}}>
+        See details
+      </LinkTo>
+
+  </div>
+
+</article>

@@ -1,0 +1,10 @@
+
+<div>
+  <ul class="results">
+    <Employees::Filter @employees={{@employees}} @query={{this.query}} as |results|>
+      {{#each results as |employee|}}
+        <li><Employee @employee={{employee}} /></li>
+      {{/each}}
+    </Employees::Filter>
+  </ul>
+</div>
