@@ -65,3 +65,30 @@ Some testing using JUnit 5 was added in order to make sure that the project meth
 
 3. Lombok was used in order to save lines of code. More about lombok [here](https://projectlombok.org/).
 
+## Ember.js frontend
+
+## Prerequisites
+
+You will need the following things properly installed on your computer.
+
+* [Git](https://git-scm.com/)
+* [Node.js](https://nodejs.org/)
+* [Yarn](https://yarnpkg.com/)
+* [Ember CLI](https://ember-cli.com/)
+* [Google Chrome](https://google.com/chrome/)
+
+## Installation
+
+* `git clone <repository-url>` this repository
+* `cd onboarding_training/app-inventory`
+* `yarn install`
+
+## Running / Development
+
+* Run the following command:
+ 
+ ```
+ $ ember serve
+ ```
+ 
+* Visit your app at [http://localhost:4200](http://localhost:4200).
